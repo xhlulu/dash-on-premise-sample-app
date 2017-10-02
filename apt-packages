@@ -1,3 +1,2 @@
-libaio1
-libaio-dev
-unzip
+unixodbc
+unixodbc-dev
