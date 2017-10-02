@@ -1,3 +1,4 @@
 dash==1.2.0
 plotly
 gunicorn
+cx_Oracle
