@@ -44,8 +44,8 @@ def auth(app):
                 config.DASH_APP_NAME
             )
 
-    # Configure private auth
-    if config.DASH_APP_PRIVACY == 'private':
+    # Configure private or secret auth
+    if config.DASH_APP_PRIVACY in ['private', 'secret']:
         if os.environ['PLOTLY_API_KEY'] == 'your-plotly-api-key':
              raise Exception(
                 'Please enter the your Plotly API key inside config.py')

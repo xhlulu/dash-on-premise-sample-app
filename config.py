@@ -14,6 +14,8 @@ DASH_APP_NAME = 'name-of-your-dash-app'
 # Set to 'public' if you want your app to be accessible to
 # anyone who has access to your Plotly server on your network without
 # a login screen.
+# Set to 'secret' if you want to add a login screen, but allow it
+# to be bypassed by using a secret "share_key" parameter.
 DASH_APP_PRIVACY = 'public'
 
 # Dash On-Premise is configured with either "Path based routing"
@@ -27,7 +29,7 @@ PATH_BASED_ROUTING = True
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # This section only needs to be filled out                                #
-# if DASH_APP_PRIVACY is set to 'private'                                 #
+# if DASH_APP_PRIVACY is set to 'private' or 'secret'                     #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Fill in with your Plotly On-Premise username
