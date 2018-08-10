@@ -48,15 +48,18 @@ def auth(app):
     if config.DASH_APP_PRIVACY in ['private', 'secret']:
         if os.environ['PLOTLY_API_KEY'] == 'your-plotly-api-key':
              raise Exception(
-                'Please enter the your Plotly API key inside config.py')
+                'Please enter your Plotly API key inside config.py '
+                '(PLOTLY_API_KEY)')
 
         if os.environ['PLOTLY_USERNAME'] == 'your-plotly-username':
              raise Exception(
-                'Please enter the your Plotly username inside config.py')
+                'Please enter your Plotly username inside config.py '
+                '(PLOTLY_USERNAME)')
 
         if os.environ['PLOTLY_DOMAIN'] == 'https://your-plotly-domain.com':
              raise Exception(
-                'Please enter the your Plotly domain inside config.py')
+                'Please enter your Plotly domain inside config.py '
+                '(PLOTLY_DOMAIN)')
 
         if os.environ['PLOTLY_SSL_VERIFICATION'] == 'False':
             urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
