@@ -33,17 +33,6 @@ def auth(app):
             PLOTLY_SSL_VERIFICATION=os.environ['PLOTLY_SSL_VERIFICATION']
         )))
 
-    # Configure path-based routing
-    if 'DYNO' in os.environ:
-        if config.PATH_BASED_ROUTING:
-            if config.DASH_APP_NAME == 'name-of-your-dash-app':
-                 raise Exception(
-                    'Please enter the name of your'
-                    ' dash app inside config.py')
-            app.config.requests_pathname_prefix = '/{}/'.format(
-                config.DASH_APP_NAME
-            )
-
     # Configure private or secret auth
     if config.DASH_APP_PRIVACY in ['private', 'secret']:
         if os.environ['PLOTLY_API_KEY'] == 'your-plotly-api-key':
@@ -64,19 +53,19 @@ def auth(app):
         if os.environ['PLOTLY_SSL_VERIFICATION'] == 'False':
             urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-        if config.PATH_BASED_ROUTING:
-            APP_URL = '{}/{}'.format(
-                config.PLOTLY_DASH_DOMAIN.strip('/'),
-                config.DASH_APP_NAME,
-            )
-        else:
-            APP_URL = '{}://{}.{}'.format(
-                config.PLOTLY_DASH_DOMAIN.split('://')[0],
-                config.DASH_APP_NAME,
-                config.PLOTLY_DASH_DOMAIN.split('://')[1].strip('/')
-            )
+    if config.PATH_BASED_ROUTING:
+        APP_URL = '{}/{}'.format(
+            config.PLOTLY_DASH_DOMAIN.strip('/'),
+            config.DASH_APP_NAME,
+        )
+    else:
+        APP_URL = '{}://{}.{}'.format(
+            config.PLOTLY_DASH_DOMAIN.split('://')[0],
+            config.DASH_APP_NAME,
+            config.PLOTLY_DASH_DOMAIN.split('://')[1].strip('/')
+        )
 
-        dash_auth.PlotlyAuth(
+    return dash_auth.PlotlyAuth(
             app,
             config.DASH_APP_NAME,
             config.DASH_APP_PRIVACY,

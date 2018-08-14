@@ -14,7 +14,7 @@ app = dash.Dash(
     # Serve any files that are available in the `static` folder
     static_folder='static'
 )
-auth(app)
+authorizer = auth(app)
 
 server = app.server  # Expose the server variable for deployments
 
