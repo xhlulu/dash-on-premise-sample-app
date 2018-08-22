@@ -10,13 +10,13 @@ import config
 # You do not need to edit this file
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+
 def auth(app):
     # Print info for debugging
     if 'DYNO' in os.environ:
         print(dedent('''
             DASH_APP_NAME: {DASH_APP_NAME}
             DASH_APP_PRIVACY: {DASH_APP_PRIVACY}
-            PATH_BASED_ROUTING: {PATH_BASED_ROUTING}
             PLOTLY_USERNAME: {PLOTLY_USERNAME}
             PLOTLY_DOMAIN: {PLOTLY_DOMAIN}
             PLOTLY_API_DOMAIN: {PLOTLY_API_DOMAIN}
@@ -25,7 +25,6 @@ def auth(app):
         '''.format(
             DASH_APP_NAME=config.DASH_APP_NAME,
             DASH_APP_PRIVACY=config.DASH_APP_PRIVACY,
-            PATH_BASED_ROUTING=config.PATH_BASED_ROUTING,
             PLOTLY_USERNAME=os.environ['PLOTLY_USERNAME'],
             PLOTLY_DOMAIN=os.environ['PLOTLY_DOMAIN'],
             PLOTLY_API_DOMAIN=os.environ['PLOTLY_API_DOMAIN'],
@@ -50,24 +49,15 @@ def auth(app):
                 'Please enter your Plotly domain inside config.py '
                 '(PLOTLY_DOMAIN)')
 
-        if os.environ['PLOTLY_SSL_VERIFICATION'] == 'False':
-            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
-    if config.PATH_BASED_ROUTING:
-        APP_URL = '{}/{}'.format(
-            config.PLOTLY_DASH_DOMAIN.strip('/'),
-            config.DASH_APP_NAME,
-        )
-    else:
-        APP_URL = '{}://{}.{}'.format(
-            config.PLOTLY_DASH_DOMAIN.split('://')[0],
-            config.DASH_APP_NAME,
-            config.PLOTLY_DASH_DOMAIN.split('://')[1].strip('/')
-        )
+    app_url = '{}://{}.{}'.format(
+        config.PLOTLY_DASH_DOMAIN.split('://')[0],
+        config.DASH_APP_NAME,
+        config.PLOTLY_DASH_DOMAIN.split('://')[1].strip('/')
+    )
 
     return dash_auth.PlotlyAuth(
             app,
             config.DASH_APP_NAME,
             config.DASH_APP_PRIVACY,
-            [APP_URL, 'http://localhost:8050', 'http://127.0.0.1:8050']
+            [app_url, 'http://localhost:8050', 'http://127.0.0.1:8050']
         )
