@@ -49,10 +49,9 @@ def auth(app):
                 'Please enter your Plotly domain inside config.py '
                 '(PLOTLY_DOMAIN)')
 
-    app_url = '{}://{}.{}'.format(
-        config.PLOTLY_DASH_DOMAIN.split('://')[0],
-        config.DASH_APP_NAME,
-        config.PLOTLY_DASH_DOMAIN.split('://')[1].strip('/')
+    app_url = '{}/{}'.format(
+        config.PLOTLY_DASH_DOMAIN,
+        config.DASH_APP_NAME
     )
 
     return dash_auth.PlotlyAuth(
