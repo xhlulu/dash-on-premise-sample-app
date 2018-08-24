@@ -1,3 +1,4 @@
+import os
 import dash
 from dash.dependencies import Input, Output
 import dash_core_components as dcc
@@ -14,6 +15,9 @@ app = dash.Dash(
     # Serve any files that are available in the `static` folder
     static_folder='static'
 )
+
+app.config.assets_external_path = os.path.join('/',os.environ.get('DASH_APP_NAME', ''),'assets/')
+
 auth(app)
 
 server = app.server  # Expose the server variable for deployments
@@ -55,16 +59,6 @@ def update_graph(value):
             }
         }
     }
-
-# Optionally include CSS
-app.css.append_css({
-    'external_url': [
-        StaticUrlPath(css) for css in [
-            'dash.css', 'grid.css', 'loading.css', 'page.css',
-            'spacing.css', 'styles.css', 'tables.css', 'typography.css'
-        ]
-    ]
-})
 
 if __name__ == '__main__':
     app.run_server(debug=True)
