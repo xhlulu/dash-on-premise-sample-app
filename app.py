@@ -1,4 +1,3 @@
-import os
 import dash
 from dash.dependencies import Input, Output
 import dash_core_components as dcc
@@ -12,12 +11,7 @@ from utils import StaticUrlPath
 
 app = dash.Dash(
     __name__,
-    # Serve any files that are available in the `static` folder
-    static_folder='static'
 )
-
-app.config.assets_external_path = os.path.join('/',os.environ.get('DASH_APP_NAME', ''),'assets/')
-
 auth(app)
 
 server = app.server  # Expose the server variable for deployments
