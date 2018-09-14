@@ -20,15 +20,13 @@ def auth(app):
             PLOTLY_DOMAIN: {PLOTLY_DOMAIN}
             PLOTLY_API_DOMAIN: {PLOTLY_API_DOMAIN}
             PLOTLY_DASH_DOMAIN: {PLOTLY_DASH_DOMAIN}
-            PLOTLY_SSL_VERIFICATION: {PLOTLY_SSL_VERIFICATION}
         '''.format(
-            DASH_APP_NAME=config.DASH_APP_NAME,
+            DASH_APP_NAME=os.environ['DASH_APP_NAME'],
             DASH_APP_PRIVACY=config.DASH_APP_PRIVACY,
             PLOTLY_USERNAME=os.environ['PLOTLY_USERNAME'],
             PLOTLY_DOMAIN=os.environ['PLOTLY_DOMAIN'],
             PLOTLY_API_DOMAIN=os.environ['PLOTLY_API_DOMAIN'],
             PLOTLY_DASH_DOMAIN=config.PLOTLY_DASH_DOMAIN,
-            PLOTLY_SSL_VERIFICATION=os.environ['PLOTLY_SSL_VERIFICATION']
         )))
 
     # Configure private or secret auth
@@ -48,14 +46,14 @@ def auth(app):
                 'Please enter your Plotly domain inside config.py '
                 '(PLOTLY_DOMAIN)')
 
-    app_url = '{}/{}'.format(
+        app_url = '{}/{}'.format(
         config.PLOTLY_DASH_DOMAIN,
-        config.DASH_APP_NAME
-    )
+        os.environ['DASH_APP_NAME']
+        )
 
-    return dash_auth.PlotlyAuth(
+        return dash_auth.PlotlyAuth(
             app,
-            config.DASH_APP_NAME,
+            os.environ['DASH_APP_NAME'],
             config.DASH_APP_PRIVACY,
             [app_url, 'http://localhost:8050', 'http://127.0.0.1:8050']
         )

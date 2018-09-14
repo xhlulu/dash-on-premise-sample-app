@@ -1,12 +1,10 @@
 import os
 
-# Replace with the name of your Dash app
-# This will end up being part of the URL of your deployed app,
-# so it can't contain any spaces, capitalizations, or special characters
-#
-# This name MUST match the name that you specified in the
-# Dash App Manager
-DASH_APP_NAME = os.getenv('DASH_APP_NAME', 'name-of-your-dash-app')
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# This file only needs to be filled out if you wish to set                #
+# DASH_APP_PRIVACY to 'private' or 'secret'                               #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 
 # Set to 'private' if you want to add a login screen to your app
 # You can choose who can view the app in your list of files
@@ -32,18 +30,15 @@ os.environ['PLOTLY_USERNAME'] = 'your-plotly-username'
 os.environ['PLOTLY_API_KEY'] = 'your-plotly-api-key'
 
 # Fill in with your Plotly On-Premise domain
-os.environ['PLOTLY_DOMAIN'] = os.getenv('PLOTLY_DOMAIN',
-                                        'https://your-plotly-domain.com')
-
-os.environ['PLOTLY_API_DOMAIN'] = os.getenv('PLOTLY_API_DOMAIN',
-                                            os.environ['PLOTLY_DOMAIN'])
+os.environ['PLOTLY_DOMAIN'] = 'https://your-plotly-domain.com'
+os.environ['PLOTLY_API_DOMAIN'] = os.environ['PLOTLY_DOMAIN']
 
 # Fill in with the domain of your Dash subdomain.
 # This matches the domain of the Dash App Manager
-PLOTLY_DASH_DOMAIN = 'https://your-dash-manager-plotly-domain.com'
+PLOTLY_DASH_DOMAIN='https://your-dash-manager-plotly-domain.com'
 
 # Keep as True if your SSL certificates are valid.
 # If you are just trialing Plotly On-Premise with self signed certificates,
 # then you can set this to False. Note that self-signed certificates are not
 # safe for production.
-os.environ['PLOTLY_SSL_VERIFICATION'] = 'False'
+os.environ['PLOTLY_SSL_VERIFICATION'] = 'True'

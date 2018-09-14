@@ -9,6 +9,7 @@ from auth import auth
 app = dash.Dash(
     __name__
 )
+
 authorizer = auth(app)
 
 server = app.server  # Expose the server variable for deployments
