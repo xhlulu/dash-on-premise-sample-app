@@ -1,7 +1,6 @@
 import dash_auth
 import os
 from textwrap import dedent
-import urllib3
 
 import config
 
