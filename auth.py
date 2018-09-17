@@ -21,6 +21,9 @@ def auth(app, authorizer=False):
             PLOTLY_DOMAIN: {PLOTLY_DOMAIN}
             PLOTLY_API_DOMAIN: {PLOTLY_API_DOMAIN}
             PLOTLY_DASH_DOMAIN: {PLOTLY_DASH_DOMAIN}
+            PLOTLY_SSL_VERIFICATION: {PLOTLY_SSL_VERIFICATION}
+
+            
         '''.format(
             DASH_APP_NAME=os.environ['DASH_APP_NAME'],
             DASH_APP_PRIVACY=config.DASH_APP_PRIVACY,
@@ -28,6 +31,8 @@ def auth(app, authorizer=False):
             PLOTLY_DOMAIN=os.environ['PLOTLY_DOMAIN'],
             PLOTLY_API_DOMAIN=os.environ['PLOTLY_API_DOMAIN'],
             PLOTLY_DASH_DOMAIN=config.PLOTLY_DASH_DOMAIN,
+            PLOTLY_SSL_VERIFICATION=os.environ['PLOTLY_SSL_VERIFICATION']
+
         )))
 
     # Configure private or secret auth
