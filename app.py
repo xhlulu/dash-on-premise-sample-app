@@ -10,7 +10,13 @@ app = dash.Dash(
     __name__
 )
 
-authorizer = auth(app)
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Set authorizer=True if you wish to use a PlotlyAuth object              #
+# without having to set DASH_APP_PRIVACY to private / secret.             #
+# You must fill out config.py in order to use this feature.               #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+authorizer = auth(app, authorizer=False)
 
 server = app.server  # Expose the server variable for deployments
 

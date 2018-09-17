@@ -4,13 +4,14 @@ from textwrap import dedent
 
 import config
 
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # This file provides an interface to the `plotly_auth` library
 # You do not need to edit this file
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 
-def auth(app):
+def auth(app, authorizer=False):
     # Print info for debugging
     if 'DYNO' in os.environ:
         print(dedent('''
@@ -32,23 +33,23 @@ def auth(app):
     # Configure private or secret auth
     if config.DASH_APP_PRIVACY in ['private', 'secret']:
         if os.environ['PLOTLY_API_KEY'] == 'your-plotly-api-key':
-             raise Exception(
+            raise Exception(
                 'Please enter your Plotly API key inside config.py '
                 '(PLOTLY_API_KEY)')
 
         if os.environ['PLOTLY_USERNAME'] == 'your-plotly-username':
-             raise Exception(
+            raise Exception(
                 'Please enter your Plotly username inside config.py '
                 '(PLOTLY_USERNAME)')
 
         if os.environ['PLOTLY_DOMAIN'] == 'https://your-plotly-domain.com':
-             raise Exception(
+            raise Exception(
                 'Please enter your Plotly domain inside config.py '
                 '(PLOTLY_DOMAIN)')
 
         app_url = '{}/{}'.format(
-        config.PLOTLY_DASH_DOMAIN,
-        os.environ['DASH_APP_NAME']
+            config.PLOTLY_DASH_DOMAIN,
+            os.environ['DASH_APP_NAME']
         )
 
         return dash_auth.PlotlyAuth(
@@ -57,3 +58,14 @@ def auth(app):
             config.DASH_APP_PRIVACY,
             [app_url, 'http://localhost:8050', 'http://127.0.0.1:8050']
         )
+    if authorizer:
+        app_url = '{}/{}'.format(
+            config.PLOTLY_DASH_DOMAIN,
+            os.environ['DASH_APP_NAME']
+        )
+
+        return dash_auth.PlotlyAuth(
+            app,
+            os.environ['DASH_APP_NAME'],
+            config.DASH_APP_PRIVACY,
+            [app_url, 'http://localhost:8050', 'http://127.0.0.1:8050'])

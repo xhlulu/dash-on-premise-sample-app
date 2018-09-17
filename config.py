@@ -1,8 +1,12 @@
 import os
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# This file only needs to be filled out if you wish to set                #
-# DASH_APP_PRIVACY to 'private' or 'secret'                               #
+# This file needs to be filled out if you wish to set                     #
+# DASH_APP_PRIVACY to 'private' or 'secret' .                             #
+#                                                                         #
+# Additionally,fill out this config if you wish to use PlotlyAuth in      #
+# you dash app.                                                           #
+#                                                                         #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 
@@ -30,9 +34,11 @@ os.environ['PLOTLY_USERNAME'] = 'your-plotly-username'
 os.environ['PLOTLY_API_KEY'] = 'your-plotly-api-key'
 
 # Fill in with your Plotly On-Premise domain
-os.environ['PLOTLY_DOMAIN'] = 'https://your-plotly-domain.com'
-os.environ['PLOTLY_API_DOMAIN'] = os.environ['PLOTLY_DOMAIN']
+os.environ['PLOTLY_DOMAIN'] = os.getenv('PLOTLY_DOMAIN',
+                                        'https://your-plotly-domain.com')
 
+os.environ['PLOTLY_API_DOMAIN'] = os.getenv('PLOTLY_API_DOMAIN',
+                                            os.environ['PLOTLY_DOMAIN'])
 # Fill in with the domain of your Dash subdomain.
 # This matches the domain of the Dash App Manager
 PLOTLY_DASH_DOMAIN = 'https://your-dash-manager-plotly-domain.com'
