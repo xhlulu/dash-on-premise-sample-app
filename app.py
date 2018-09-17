@@ -6,7 +6,6 @@ import dash_html_components as html
 from components import Column, Header, Row
 import config
 from auth import auth
-from utils import StaticUrlPath
 
 
 app = dash.Dash(
