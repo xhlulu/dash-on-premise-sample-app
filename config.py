@@ -14,7 +14,7 @@ import os
 # a login screen.
 # Set to 'secret' if you want to add a login screen, but allow it
 # to be bypassed by using a secret "share_key" parameter.
-DASH_APP_PRIVACY = os.getenv('DASH_APP_PRIVACY', 'public')
+DASH_APP_PRIVACY = 'public'
 
 # Fill in with your Plotly On-Premise username
 os.environ['PLOTLY_USERNAME'] = 'your-plotly-username'
@@ -35,7 +35,7 @@ os.environ['PLOTLY_API_DOMAIN'] = os.environ['PLOTLY_DOMAIN']
 
 # Fill in with the domain of your Dash subdomain.
 # This matches the domain of the Dash App Manager
-PLOTLY_DASH_DOMAIN='https://your-dash-manager-plotly-domain.com'
+PLOTLY_DASH_DOMAIN = 'https://your-dash-manager-plotly-domain.com'
 
 # Keep as True if your SSL certificates are valid.
 # If you are just trialing Plotly On-Premise with self signed certificates,
