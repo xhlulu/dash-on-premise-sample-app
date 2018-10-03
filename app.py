@@ -73,9 +73,9 @@ def create_figure(column):
 
     lm = LinearRegression()
 
-    lm.fit(gapminder[column].reshape(-1, 1), gapminder['lifeExp'])
+    lm.fit(gapminder[column].values.reshape(-1, 1), gapminder['lifeExp'])
 
-    gapminder['predict'] = lm.predict(gapminder[column].reshape(-1, 1))
+    gapminder['predict'] = lm.predict(gapminder[column].values.reshape(-1, 1))
     gapminder.sort_values('predict', inplace=True)
 
     data = [
