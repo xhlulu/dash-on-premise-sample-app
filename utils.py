@@ -4,7 +4,7 @@ from textwrap import dedent
 import config
 
 def StaticUrlPath(resource):
-    if not os.path.exists(os.path.join('assets/images', resource)):
+    if not os.path.exists(os.path.join('assets', 'images', resource)):
         raise Exception(dedent('''
             The file "{}" does not exist in the "assets/images" folder.
         '''.format(resource, resource)))
