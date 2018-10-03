@@ -1,5 +1,6 @@
 import os
 
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # This file needs to be filled out if you wish to set                     #
 # DASH_APP_PRIVACY to 'private' or 'secret' .                             #
@@ -29,7 +30,7 @@ REQUIRE_LOGIN = False
 DASH_APP_PRIVACY = 'public'
 
 # Fill in with your Plotly On-Premise username
-os.environ['PLOTLY_USERNAME'] = 'charley'
+os.environ['PLOTLY_USERNAME'] = 'your-plotly-username'
 
 # Fill in with your Plotly On-Premise API key
 # See <your-plotly-server>/settings/api to generate a key
@@ -39,14 +40,18 @@ os.environ['PLOTLY_USERNAME'] = 'charley'
 # or inside a Python session with these commands:
 # import plotly
 # print(plotly.tools.get_config_file())
-os.environ['PLOTLY_API_KEY'] = 'gasXmOcsZege0t20Tveh'
+os.environ['PLOTLY_API_KEY'] = 'your-plotly-api-key'
 
 # Fill in with your Plotly On-Premise domain
+<< << << < HEAD
 << << << < HEAD
 os.environ['PLOTLY_DOMAIN'] = os.getenv('PLOTLY_DOMAIN',
                                         'https://your-plotly-domain.com')
 == == == =
 os.environ['PLOTLY_DOMAIN'] = 'https://buildly.plotly.systems'
+== == == =
+os.environ['PLOTLY_DOMAIN'] = 'https://your-plotly-domain.com'
+>>>>>> > resetting defaults in config.py
 os.environ['PLOTLY_API_DOMAIN'] = os.environ['PLOTLY_DOMAIN']
 >>>>>> > first changes for commit
 
@@ -55,13 +60,17 @@ os.environ['PLOTLY_API_DOMAIN'] = os.getenv('PLOTLY_API_DOMAIN',
 # Fill in with the domain of your Dash subdomain.
 # This matches the domain of the Dash App Manager
 << << << < HEAD
+<< << << < HEAD
 PLOTLY_DASH_DOMAIN = 'https://your-dash-manager-plotly-domain.com'
 == == == =
 PLOTLY_DASH_DOMAIN = 'https://dash-buildly.plotly.systems'
 >>>>>> > first changes for commit
+== == == =
+PLOTLY_DASH_DOMAIN = 'https://your-dash-manager-plotly-domain.com'
+>>>>>> > resetting defaults in config.py
 
 # Keep as True if your SSL certificates are valid.
 # If you are just trialing Plotly On-Premise with self signed certificates,
 # then you can set this to False. Note that self-signed certificates are not
 # safe for production.
-os.environ['PLOTLY_SSL_VERIFICATION'] = 'False'
+os.environ['PLOTLY_SSL_VERIFICATION'] = 'True'
