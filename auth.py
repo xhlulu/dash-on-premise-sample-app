@@ -11,7 +11,7 @@ import config
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 
-def auth(app, authorizer=False):
+def auth(app):
     # Print info for debugging
     if 'DYNO' in os.environ:
         print(dedent('''
@@ -63,7 +63,7 @@ def auth(app, authorizer=False):
             config.DASH_APP_PRIVACY,
             [app_url, 'http://localhost:8050', 'http://127.0.0.1:8050']
         )
-    if authorizer:
+    if config.REQUIRE_LOGIN:
         app_url = '{}/{}'.format(
             config.PLOTLY_DASH_DOMAIN,
             os.environ['DASH_APP_NAME']

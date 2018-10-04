@@ -10,13 +10,13 @@ app = dash.Dash(
     __name__
 )
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# Set authorizer=True if you wish to use a PlotlyAuth object              #
-# without having to set DASH_APP_PRIVACY to private / secret.             #
-# You must fill out config.py in order to use this feature.               #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
-authorizer = auth(app, authorizer=False)
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Optionally display a log in screen.                                                                   #
+# If `REQUIRE_LOGIN = True` in `config.py`, then auth_instance allows you to programatically access the #
+# username of the currently logged in user.                                                             #
+# If `REQUIRE_LOGIN = False`, then no login screen will be displayed and `auth_instance` will be `None` #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+auth_instance = auth(app)
 
 server = app.server  # Expose the server variable for deployments
 
