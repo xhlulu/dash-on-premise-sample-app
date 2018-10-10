@@ -15,7 +15,6 @@ def auth(app):
     # Print info for debugging
     if 'DYNO' in os.environ:
         print(dedent('''
-            DASH_APP_NAME: {DASH_APP_NAME}
             DASH_APP_PRIVACY: {DASH_APP_PRIVACY}
             PLOTLY_USERNAME: {PLOTLY_USERNAME}
             PLOTLY_DOMAIN: {PLOTLY_DOMAIN}
@@ -23,9 +22,8 @@ def auth(app):
             PLOTLY_DASH_DOMAIN: {PLOTLY_DASH_DOMAIN}
             PLOTLY_SSL_VERIFICATION: {PLOTLY_SSL_VERIFICATION}
 
-            
+
         '''.format(
-            DASH_APP_NAME=os.environ['DASH_APP_NAME'],
             DASH_APP_PRIVACY=config.DASH_APP_PRIVACY,
             PLOTLY_USERNAME=os.environ['PLOTLY_USERNAME'],
             PLOTLY_DOMAIN=os.environ['PLOTLY_DOMAIN'],
