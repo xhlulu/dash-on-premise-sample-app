@@ -2,3 +2,5 @@ venv
 *.pyc
 .DS_Store
 vv
+.ipynb_checkpoints
+*.ipynb
