@@ -5,6 +5,7 @@ import dash_html_components as html
 
 from components import Column, Header, Row
 from auth import auth
+from skbio import DNA
 
 app = dash.Dash(
     __name__
@@ -17,6 +18,7 @@ app = dash.Dash(
 # If `REQUIRE_LOGIN = False`, then no login screen will be displayed and `auth_instance` will be `None` #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 auth_instance = auth(app)
+dna = DNA.read('assets/single_sequence1.fasta', seq_num=1)
 
 server = app.server  # Expose the server variable for deployments
 
@@ -29,35 +31,34 @@ app.layout = html.Div(className='container', children=[
         Column(width=4, children=[
             dcc.Dropdown(
                 id='dropdown',
-                options=[{'label': i, 'value': i} for i in ['LA', 'NYC', 'MTL']],
-                value='LA'
+                options=[
+                    {'label': 'purine-run', 'value': 'purine-run'},
+                    {'label': 'pyrimidine-run', 'value': 'pyrimidine-run'}
+                ],
+                value='purine-run'
             )
         ]),
         Column(width=8, children=[
-            dcc.Graph(id='graph')
+            html.Div(id='results')
         ])
     ])
 ])
 
 
-@app.callback(Output('graph', 'figure'),
+@app.callback(Output('results', 'children'),
               [Input('dropdown', 'value')])
-def update_graph(value):
-    return {
-        'data': [{
-            'x': [1, 2, 3, 4, 5, 6],
-            'y': [3, 1, 2, 3, 5, 6]
-        }],
-        'layout': {
-            'title': value,
-            'margin': {
-                'l': 60,
-                'r': 10,
-                't': 40,
-                'b': 60
-            }
-        }
-    }
+def return_stats(run_type):
+    runs = list(dna.find_motifs(run_type, min_length=2))
+    longest = max(runs, key=lambda x: x.stop - x.start)
+    return html.Div([
+        html.P(['ID: {}'.format(dna[longest].metadata['id'])]),
+        html.P(['Description: {}'.format(dna[longest].metadata['description'])]),
+        html.P(['Has Gaps: {}'.format(dna[longest].has_gaps())]),
+        html.P(['Has Degenerates: {}'.format(dna[longest].has_gaps())]),
+        html.P(['Has Definites: {}'.format(dna[longest].has_definites())]),
+        html.P(['GC-Content: {}'.format(dna[longest].gc_content())])
+    ])
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)
