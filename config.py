@@ -11,7 +11,7 @@ import os
 
 # If REQUIRE_LOGIN is set to true only users with a valid Plotly Enterprise
 # account can access.
-REQUIRE_LOGIN = True
+REQUIRE_LOGIN = False
 
 # DASH_APP_PRIVACY can be 'public', 'secret', or 'private'.
 # If 'public', then the log in screen is displayed but _anyone_ with a valid
