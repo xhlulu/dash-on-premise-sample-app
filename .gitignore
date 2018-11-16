@@ -3,5 +3,3 @@ venv
 .DS_Store
 vv
 .idea
-.ipynb_checkpoints
-*.ipynb
