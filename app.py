@@ -57,9 +57,9 @@ app.layout = html.Div(className='container', children=[
 )
 def update_img(value):
     if value == 'Coins':
-        return '/assets/15368545052359371.jpg'
+        return StaticUrlPath('15368545052359371.jpg')
     else:
-        return '/assets/ba3g0.jpg'
+        return StaticUrlPath('ba3g0.jpg')
 
 
 @app.callback(
