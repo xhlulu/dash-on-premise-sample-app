@@ -2,6 +2,7 @@ import dash_html_components as html
 from .Column import Column
 from utils import StaticUrlPath
 
+
 def Header(title):
     height = 60
     return html.Div(
@@ -22,7 +23,7 @@ def Header(title):
             Column(
                 width=6,
                 children=html.Img(
-                    src=StaticUrlPath('dash-logo.png'),
+                    src='/assets/dash-logo.png',
                     style={
                         'float': 'right',
                         'height': height,
