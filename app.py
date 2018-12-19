@@ -20,8 +20,9 @@ auth_instance = auth(app)
 
 server = app.server  # Expose the server variable for deployments
 
-with open(app.get_asset_url('test.txt')) as f:
-    hello_text = f.read()
+try:
+    with open(app.get_asset_url('test.txt')) as f:
+        hello_text = f.read()
 except:
     hello_text = 'did not read'
 
