@@ -24,7 +24,7 @@ try:
     with open(app.get_asset_url('test.txt')) as f:
         hello_text = f.read()
 except Exception as e:
-    hello_text = e
+    hello_text = str(e)
 
 # print(hello_text)
 
