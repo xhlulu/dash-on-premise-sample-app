@@ -20,6 +20,13 @@ auth_instance = auth(app)
 
 server = app.server  # Expose the server variable for deployments
 
+with open(app.get_asset_url('test.txt')) as f:
+    hello_text = f.read()
+except:
+    hello_text = 'did not read'
+
+# print(hello_text)
+
 # Standard Dash app code below
 app.layout = html.Div(className='container', children=[
 
@@ -31,7 +38,8 @@ app.layout = html.Div(className='container', children=[
                 id='dropdown',
                 options=[{'label': i, 'value': i} for i in ['LA', 'NYC', 'MTL']],
                 value='LA'
-            )
+            ),
+            html.Div([hello_text])
         ]),
         Column(width=8, children=[
             dcc.Graph(id='graph')
@@ -58,6 +66,7 @@ def update_graph(value):
             }
         }
     }
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)

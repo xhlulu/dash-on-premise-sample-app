@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "dokku": {
+      "postdeploy": "echo \"Hello\" >> assets/test.txt"
+    }
+  }
+}
