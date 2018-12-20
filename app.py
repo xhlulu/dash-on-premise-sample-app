@@ -14,9 +14,9 @@ paths = []
 try:
     for root, dirs, files in os.walk("."):
         path = root.split(os.sep)
-        paths.append(path)
+        paths.append(str(path))
 except Exception as e:
-    paths = [e]
+    paths = [str(e)]
 
 app = dash.Dash(
     __name__
