@@ -6,6 +6,17 @@ import dash_html_components as html
 from components import Column, Header, Row
 from auth import auth
 
+import os
+
+paths = []
+
+# traverse root directory, and list directories as dirs and files as files
+for root, dirs, files in os.walk("."):
+    path = root.split(os.sep)
+    paths.append((len(path) - 1) * '---', os.path.basename(root))
+    for file in files:
+        paths.append(len(path) * '---', file)
+
 app = dash.Dash(
     __name__
 )
@@ -40,7 +51,8 @@ app.layout = html.Div(className='container', children=[
                 options=[{'label': i, 'value': i} for i in ['LA', 'NYC', 'MTL']],
                 value='LA'
             ),
-            html.Div([hello_text])
+            html.Div([hello_text]),
+            html.Pre(paths)
         ]),
         Column(width=8, children=[
             dcc.Graph(id='graph')
