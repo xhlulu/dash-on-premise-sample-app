@@ -35,7 +35,7 @@ auth_instance = auth(app)
 server = app.server  # Expose the server variable for deployments
 
 try:
-    with open(app.StaticUrlPath('test.txt')) as f:
+    with open(StaticUrlPath('test.txt')) as f:
         hello_text = f.read()
 except Exception as e:
     hello_text = str(e)
