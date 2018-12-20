@@ -5,6 +5,7 @@ import dash_html_components as html
 
 from components import Column, Header, Row
 from auth import auth
+import pandas as pd
 
 import os
 
@@ -38,6 +39,13 @@ try:
 except Exception as e:
     hello_text = str(e)
 
+
+try:
+    df = pd.read_csv(app.get_asset_url('test.csv'))
+    df_success = 'yes!'
+except Exception as e:
+    df_success = str(e)
+
 # print(hello_text)
 
 # Standard Dash app code below
@@ -53,6 +61,7 @@ app.layout = html.Div(className='container', children=[
                 value='LA'
             ),
             html.Div([hello_text]),
+            html.Div(df_success),
             html.Div(paths)
         ]),
         Column(width=8, children=[
