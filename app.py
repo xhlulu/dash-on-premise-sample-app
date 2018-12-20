@@ -53,7 +53,7 @@ app.layout = html.Div(className='container', children=[
                 value='LA'
             ),
             html.Div([hello_text]),
-            html.Pre(paths)
+            html.Div(paths)
         ]),
         Column(width=8, children=[
             dcc.Graph(id='graph')
