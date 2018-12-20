@@ -14,9 +14,7 @@ paths = []
 try:
     for root, dirs, files in os.walk("."):
         path = root.split(os.sep)
-        paths.append((len(path) - 1) * '---', os.path.basename(root))
-        for file in files:
-            paths.append(len(path) * '---', file)
+        paths.append(path)
 except Exception as e:
     paths = [e]
 
