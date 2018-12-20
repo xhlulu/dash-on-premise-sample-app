@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dokku": {
-      "postdeploy": "echo \"Hello\" >> assets/test.txt"
+      "predeploy": "echo \"Hello\" >> assets/test.txt"
     }
   }
 }
