@@ -6,6 +6,7 @@ import dash_html_components as html
 from components import Column, Header, Row
 from auth import auth
 import pandas as pd
+from utils import StaticUrlPath
 
 import os
 
@@ -34,7 +35,7 @@ auth_instance = auth(app)
 server = app.server  # Expose the server variable for deployments
 
 try:
-    with open(app.get_asset_url('test.txt')) as f:
+    with open(app.StaticUrlPath('test.txt')) as f:
         hello_text = f.read()
 except Exception as e:
     hello_text = str(e)
