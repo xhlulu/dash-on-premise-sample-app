@@ -11,11 +11,14 @@ import os
 paths = []
 
 # traverse root directory, and list directories as dirs and files as files
-for root, dirs, files in os.walk("."):
-    path = root.split(os.sep)
-    paths.append((len(path) - 1) * '---', os.path.basename(root))
-    for file in files:
-        paths.append(len(path) * '---', file)
+try:
+    for root, dirs, files in os.walk("."):
+        path = root.split(os.sep)
+        paths.append((len(path) - 1) * '---', os.path.basename(root))
+        for file in files:
+            paths.append(len(path) * '---', file)
+except Exception as e:
+    paths = [e]
 
 app = dash.Dash(
     __name__
