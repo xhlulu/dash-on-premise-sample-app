@@ -39,7 +39,7 @@ os.environ['PLOTLY_USERNAME'] = 'rob-demo'
 # or inside a Python session with these commands:
 # import plotly
 # print(plotly.tools.get_config_file())
-os.environ['PLOTLY_API_KEY'] = 'y4lb51vM270g4SFoyzC8'
+os.environ['PLOTLY_API_KEY'] = 'cMWqRlTxVRuoWqV9v8uR'
 
 # Fill in with your Plotly On-Premise domain
 os.environ['PLOTLY_DOMAIN'] = os.getenv('PLOTLY_DOMAIN',
