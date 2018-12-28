@@ -20,6 +20,12 @@ try:
 except Exception as e:
     paths = [str(e)]
 
+# use this after ^^
+# try:
+#     paths = [i[2] for i in list(os.walk('./static'))]
+# except Exception as e:
+#     paths = [str(e)]
+
 app = dash.Dash(
     __name__
 )
@@ -34,18 +40,18 @@ auth_instance = auth(app)
 
 server = app.server  # Expose the server variable for deployments
 
-try:
-    with open(StaticUrlPath('test.txt')) as f:
-        hello_text = f.read()
-except Exception as e:
-    hello_text = str(e)
+# try:
+#     with open(StaticUrlPath('test.txt')) as f:
+#         hello_text = f.read()
+# except Exception as e:
+#     hello_text = str(e)
 
 
-try:
-    df = pd.read_csv(app.get_asset_url('test.csv'))
-    df_success = 'yes!'
-except Exception as e:
-    df_success = str(e)
+# try:
+#     df = pd.read_csv(app.get_asset_url('test.csv'))
+#     df_success = 'yes!'
+# except Exception as e:
+#     df_success = str(e)
 
 # print(hello_text)
 
@@ -68,6 +74,9 @@ app.layout = html.Div(className='container', children=[
         Column(width=8, children=[
             dcc.Graph(id='graph')
         ])
+    ]),
+    Row([
+        html.Pre(paths)
     ])
 ])
 
