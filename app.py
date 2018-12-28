@@ -13,18 +13,18 @@ import os
 paths = []
 
 # traverse root directory, and list directories as dirs and files as files
-try:
-    for root, dirs, files in os.walk("."):
-        path = root.split(os.sep)
-        paths.append(str(path))
-except Exception as e:
-    paths = [str(e)]
-
-# use this after ^^
 # try:
-#     paths = [i[2] for i in list(os.walk('./static'))]
+#     for root, dirs, files in os.walk("."):
+#         path = root.split(os.sep)
+#         paths.append(str(path))
 # except Exception as e:
 #     paths = [str(e)]
+
+# use this after ^^
+try:
+    paths = [i[2] for i in list(os.walk('./static'))]
+except Exception as e:
+    paths = [str(e)]
 
 app = dash.Dash(
     __name__
