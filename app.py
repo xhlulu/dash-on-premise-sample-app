@@ -22,7 +22,7 @@ paths = []
 
 # use this after ^^
 try:
-    paths = [i[2] for i in list(os.walk('./static'))]
+    paths = [i[2] for i in list(os.walk('./static'))][0]
 except Exception as e:
     paths = [str(e)]
 
