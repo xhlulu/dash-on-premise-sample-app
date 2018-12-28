@@ -66,10 +66,7 @@ app.layout = html.Div(className='container', children=[
                 id='dropdown',
                 options=[{'label': i, 'value': i} for i in ['LA', 'NYC', 'MTL']],
                 value='LA'
-            ),
-            html.Div([hello_text]),
-            html.Div(df_success),
-            html.Div(paths)
+            )
         ]),
         Column(width=8, children=[
             dcc.Graph(id='graph')
