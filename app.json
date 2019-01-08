@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "dokku": {
+      "predeploy": "export HTTP_PROXY=http://proxy-isolated.plotlytest:8888"
+    }
+  }
+}
