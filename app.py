@@ -5,6 +5,14 @@ import dash_html_components as html
 
 from components import Column, Header, Row
 from auth import auth
+import requests
+
+
+try:
+    r = requests.get('http://www.google.com')
+    divstr = r.text
+except Exception as e:
+    divstr = str(e)
 
 app = dash.Dash(
     __name__
@@ -22,21 +30,7 @@ server = app.server  # Expose the server variable for deployments
 
 # Standard Dash app code below
 app.layout = html.Div(className='container', children=[
-
-    Header('Sample App'),
-
-    Row([
-        Column(width=4, children=[
-            dcc.Dropdown(
-                id='dropdown',
-                options=[{'label': i, 'value': i} for i in ['LA', 'NYC', 'MTL']],
-                value='LA'
-            )
-        ]),
-        Column(width=8, children=[
-            dcc.Graph(id='graph')
-        ])
-    ])
+	html.Div([divstr])
 ])
 
 
