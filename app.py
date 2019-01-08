@@ -5,6 +5,14 @@ import dash_html_components as html
 
 from components import Column, Header, Row
 from auth import auth
+import requests
+
+
+try:
+    r = requests.get('http://www.google.com')
+    divstr = r.text
+except Exception as e:
+    divstr = str(e)
 
 app = dash.Dash(
     __name__
@@ -36,6 +44,9 @@ app.layout = html.Div(className='container', children=[
         Column(width=8, children=[
             dcc.Graph(id='graph')
         ])
+    ]),
+    Row([
+	html.Div([divstr])
     ])
 ])
 
