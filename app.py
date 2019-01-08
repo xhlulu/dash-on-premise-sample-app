@@ -9,7 +9,7 @@ import requests
 
 
 try:
-    r = requests.get('http://www.google.com')
+    r = requests.get('http://www.google.com', timeout=1)
     divstr = r.text
 except Exception as e:
     divstr = str(e)
