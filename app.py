@@ -7,9 +7,12 @@ from components import Column, Header, Row
 from auth import auth
 import requests
 
+proxies = {
+    'http': 'http://proxy-isolated.plotlytest:8888'
+}
 
 try:
-    r = requests.get('http://www.google.com', timeout=1)
+    r = requests.get('http://www.google.com', timeout=1, proxies=proxies)
     divstr = r.text
 except Exception as e:
     divstr = str(e)
