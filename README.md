@@ -1,4 +1,5 @@
 ## Dash On-Premise Sample App
+## for On-Premise Versions <= 2.5.3
 
 This repository contains a simple Dash app that can be deployed as-is on your [Plotly On-Premise](https://plot.ly/products/on-premise) server.
 

@@ -1,3 +1,5 @@
+# This file is applicable for Dash Apps deployed
+# to Dash Deployment Server versions <= 2.5.3
 import os
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
