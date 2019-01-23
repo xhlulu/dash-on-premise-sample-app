@@ -1,8 +1,6 @@
 import os
 from textwrap import dedent
 
-import config
-
 
 def StaticUrlPath(resource):
     if not os.path.exists(os.path.join('static', resource)):
