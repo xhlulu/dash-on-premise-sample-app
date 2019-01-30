@@ -13,6 +13,7 @@ dash-renderer==0.14.3
 decorator==4.3.0
 Flask==1.0.2
 Flask-Compress==1.4.0
+gunicorn==19.9.0
 hdmedians==0.13
 idna==2.7
 ipython==7.0.1
@@ -53,4 +54,3 @@ traitlets==4.3.2
 urllib3==1.23
 wcwidth==0.1.7
 Werkzeug==0.14.1
-gunicorn
