@@ -5,7 +5,6 @@ import dash_html_components as html
 
 from components import Column, Header, Row
 
-from auth import auth
 from skbio import DNA
 
 app = dash.Dash(
