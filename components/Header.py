@@ -1,8 +1,9 @@
 import dash_html_components as html
 from .Column import Column
 from utils import StaticUrlPath
+import uuid
 
-def Header(title):
+def Header(title, **kwargs):
     height = 60
     return html.Div(
         style={
@@ -14,6 +15,7 @@ def Header(title):
         children=[
             Column(
                 width=6,
+                id=kwargs.get('id',str(uuid.uuid4)),
                 children=title,
                 style={
                     'fontSize': 35,

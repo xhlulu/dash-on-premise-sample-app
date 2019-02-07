@@ -2,6 +2,7 @@ import dash
 from dash.dependencies import Input, Output
 import dash_core_components as dcc
 import dash_html_components as html
+import dash_enterprise_auth as auth
 
 from components import Column, Header, Row
 
@@ -14,7 +15,8 @@ server = app.server  # Expose the server variable for deployments
 # Standard Dash app code below
 app.layout = html.Div(className='container', children=[
 
-    Header('Sample App'),
+    Header('Sample App', id='header-title'),
+    html.Div(id='dummy-input', style={'display': 'none'}),
 
     Row([
         Column(width=4, children=[
@@ -29,6 +31,13 @@ app.layout = html.Div(className='container', children=[
         ])
     ])
 ])
+
+
+@app.callback(Output('header-title','children'),
+              [Input('dummy-input', 'children')])
+def update_title(_):
+    
+    return 'Hello {}'.format(auth.get_username())
 
 
 @app.callback(Output('graph', 'figure'),
