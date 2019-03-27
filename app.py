@@ -14,7 +14,7 @@ server = app.server  # Expose the server variable for deployments
 # Standard Dash app code below
 app.layout = html.Div(className='container', children=[
 
-    Header('Sample App'),
+    Header('Sample App', app),
 
     Row([
         Column(width=4, children=[
