@@ -4,14 +4,10 @@ import dash_core_components as dcc
 import dash_html_components as html
 
 from components import Column, Header, Row
-import config
-from auth import auth
-
 
 app = dash.Dash(
-    __name__,
+    __name__
 )
-auth(app)
 
 server = app.server  # Expose the server variable for deployments
 
@@ -33,6 +29,7 @@ app.layout = html.Div(className='container', children=[
         ])
     ])
 ])
+
 
 @app.callback(Output('graph', 'figure'),
               [Input('dropdown', 'value')])
