@@ -22,6 +22,7 @@ def gen_fig():
             type='choroplethmapbox',
             locations=df.nom_qr,
             z=np.random.randint(0,25,df.shape[0]),
+            hovertemplate='Value: %{z}<br>Qaurtier: %{location}<br>Arrondissement: %{properties.nom_arr}<extra></extra>',
             geojson="https://raw.githubusercontent.com/michaelbabyn/plot_data/master/quartierreferencehabitation.geojson",
         )],
         layout = dict(
@@ -29,7 +30,8 @@ def gen_fig():
             mapbox=dict(
                 center=dict(lon=-73.6563, lat=45.56043),
                 zoom=8.5,
-                style='basic'
+                style='basic',
+                uirevision=True
             )
         )
     )
@@ -61,4 +63,4 @@ def update_graph(value):
     return gen_fig()
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=True, port=8081)
