@@ -1,0 +1,31 @@
+{
+	"healthchecks": {
+		"web": {
+			"readiness": {
+				"httpGet": {
+					"path": "/{{ $APP }}/_dash_layout",
+					"port": 5000
+				},
+				"initialDelaySeconds": 5,
+				"periodSeconds": 5
+			}
+		},
+		"*": {
+			"liveness": {
+				"exec": {
+					"command": ["/bin/pidof", "/start"]
+				},
+				"initialDelaySeconds": 5,
+				"periodSeconds": 5
+			},
+			"readiness": {
+				"httpGet": {
+					"path": "web processes override this.",
+					"port": 5000
+				},
+				"initialDelaySeconds": 5,
+				"periodSeconds": 5
+			}
+		}
+	}
+}
