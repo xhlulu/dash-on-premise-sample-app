@@ -1,3 +1,5 @@
+import Cython
+import jnius
 import dash
 from dash.dependencies import Input, Output
 import dash_core_components as dcc

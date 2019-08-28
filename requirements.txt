@@ -1,3 +1,4 @@
 dash==1.0.0
 plotly
 gunicorn
+pyjnius
