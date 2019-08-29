@@ -2,6 +2,7 @@ import dash
 from dash.dependencies import Input, Output
 import dash_core_components as dcc
 import dash_html_components as html
+import dash_enterprise_auth as auth
 
 from components import Column, Header, Row
 
@@ -11,24 +12,42 @@ app = dash.Dash(
 
 server = app.server  # Expose the server variable for deployments
 
-# Standard Dash app code below
-app.layout = html.Div(className='container', children=[
+def layout():
+    return html.Div(className='container', children=[
 
-    Header('Sample App', app),
-
-    Row([
-        Column(width=4, children=[
-            dcc.Dropdown(
-                id='dropdown',
-                options=[{'label': i, 'value': i} for i in ['LA', 'NYC', 'MTL']],
-                value='LA'
-            )
+        Header('Sample App', app),
+        html.Div(id="user-logged-in"),
+        html.Br(),
+        Row([
+            Column(width=4, children=[
+                dcc.Dropdown(
+                    id='dropdown',
+                    options=[{'label': i, 'value': i} for i in ['LA', 'NYC', 'MTL']],
+                    value='LA'
+                )
+            ]),
+            Column(width=8, children=[
+                dcc.Graph(id='graph')
+            ])
         ]),
-        Column(width=8, children=[
-            dcc.Graph(id='graph')
-        ])
+        html.Div(id="dummy-input")
     ])
-])
+
+# Standard Dash app code below
+app.layout = layout() 
+
+@app.callback(Output('user-logged-in','children'),
+              [Input('dummy-input', 'children')])
+def update_title(_):
+
+    # print user data to the logs
+    username = auth.get_username()
+
+    if username == None:
+        username = "unauthenticated_user"
+
+    # update header with username
+    return "User: '{}' is logged in on Dash Enterprise 3.2".format(username)
 
 
 @app.callback(Output('graph', 'figure'),
